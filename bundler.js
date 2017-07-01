@@ -18,7 +18,7 @@ if (!fs.existsSync(process.cwd() + '/.eslintrc.js')) {
 }
 
 if(!fs.existsSync(process.cwd() + '/webpack.config.js')) {
-    fs.writeFileSync('webpack.config.js', require('./callpage.webpack.js')(callpageAPI), 'utf-8')
+    fs.writeFileSync('webpack.config.js', require('./webpackConfiguration.js')(callpageAPI), 'utf-8')
 } else {
     throw new Error('webpack.config.js exists')
 }
