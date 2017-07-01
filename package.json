@@ -2,7 +2,7 @@
   "name": "library-callpage-bundler",
   "version": "1.0.0",
   "description": "",
-  "main": "callpage.bundler.js",
+  "main": "bundler.js",
   "scripts": {},
   "keywords": [],
   "repository": {
