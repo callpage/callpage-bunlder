@@ -39,7 +39,6 @@
     "ng-annotate-loader": "^0.6.0",
     "ng-annotate-webpack-plugin": "^0.2.1-pre",
     "style-loader": "0.13.1",
-    "webpack": "^2.2.0",
     "webpack-dev-server": "1.16.2",
     "glob": "^7.1.2",
   }
