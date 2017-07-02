@@ -26,6 +26,12 @@ class WebpackConfiguration {
         }
         return plugins
     }
+	getProductionPlugins(config) {
+		return [
+			config.js ? `new webpack.optimize.UglifyJsPlugin())` : undefined,
+			config.scss ? `new ExtractTextPlugin({filename: 'styles/[name].css', allChunks: true})` : undefined
+		].filter(plugin => plugin).join(',')
+    }
 
     getLoaders(config) {
         return [
@@ -64,6 +70,7 @@ class WebpackConfiguration {
             this.copy = this.setCopy(config)
             this.plugins = this.getPlugins(config)
             this.loaders = this.getLoaders(config)
+			this.productionPlugins = this.getProductionPlugins(config)
             this.configuration += `{
                 entry: [${this.entry}],
                 devtool: '${config.js.sourceMaps ? "eval": '' }',
@@ -91,8 +98,7 @@ class WebpackConfiguration {
         return `${this.configuration}]  
             if(ENV) {
                 configs.forEach(config => config.plugins.push(
-                    new webpack.optimize.UglifyJsPlugin()),
-                    new ExtractTextPlugin({filename: 'styles/[name].css', allChunks: true})
+                    ${this.productionPlugins}
                     )
             }`
     }
