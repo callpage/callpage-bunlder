@@ -52,7 +52,9 @@ class WebpackConfiguration {
                     return `{from: '${file.from}', to: '${file.to}'}`
                 })
             }
-        }
+        } else {
+	    return [];
+	}
     }
     createConfiguration() {
         this.webpackConfig.forEach(function (config) {
