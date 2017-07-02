@@ -78,7 +78,7 @@ class WebpackConfiguration {
             this.productionPlugins = this.getProductionPlugins(config)
             this.configuration += `{
                 entry: [${this.entry}],
-                devtool: '${config.js.sourceMaps ? "eval": '' }',
+                ${config.js.sourceMaps ? "devtool: ENV ? 'cheap-source-map' : 'eval'," : ""}
                 output: {
                     path: path.join(__dirname, '${config.buildPath}'),
                     filename: '${this.entry.length === 1 ? config.js.output : '[name].js'}',
