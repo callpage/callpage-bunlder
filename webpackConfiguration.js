@@ -2,6 +2,7 @@ const requireLoader = require('./loaders.js');
 const requiredPlugins = require('./plugins.js');
 
 class WebpackConfiguration {
+
     constructor(webpackConfig) {
         this.webpackConfig = webpackConfig;
         this.images = false;
@@ -9,28 +10,29 @@ class WebpackConfiguration {
         ${requiredPlugins(this.webpackConfig)}
         const ENV = process.env.NODE_ENV === 'production'
         const configs = [`;
-
     }
+
     getPlugins(config) {
         const plugins = [`new CleanWebpackPlugin(['${config.buildPath}'], { root: path.join(__dirname), verbose: true, dry: false })`]
         if (config.scss) {
             plugins.push(`new PurifyCSSPlugin({paths: glob.sync(path.join(__dirname, '/*.html')), minimize: ENV })`)
         }
         if (config.copy) {
-		if(config.copy.files.length > 0) {
-            		plugins.push(`new CopyWebpackPlugin([${this.copy}])`)
-		}
+            if (config.copy.files.length > 0) {
+                plugins.push(`new CopyWebpackPlugin([${this.copy}])`)
+            }
         }
         if (config.js.plugins.ngAnnotate) {
             plugins.push(`new ngAnnotate({add: true})`)
         }
         return plugins
     }
-	getProductionPlugins(config) {
-		return [
-			config.js ? `new webpack.optimize.UglifyJsPlugin())` : undefined,
-			config.scss ? `new ExtractTextPlugin({filename: 'styles/[name].css', allChunks: true})` : undefined
-		].filter(plugin => plugin).join(',')
+    
+    getProductionPlugins(config) {
+        return [
+            config.js ? `new webpack.optimize.UglifyJsPlugin())` : undefined,
+            config.scss ? `new ExtractTextPlugin({filename: 'styles/[name].css', allChunks: true})` : undefined
+        ].filter(plugin => plugin).join(',')
     }
 
     getLoaders(config) {
@@ -41,6 +43,7 @@ class WebpackConfiguration {
             this.hasImages ? requireLoader("images") : undefined
         ].filter(elem => elem).join(',')
     }
+
     setEntry(config) {
         let entry = []
         if (config.js.entry) {
@@ -53,6 +56,7 @@ class WebpackConfiguration {
         }
         return entry;
     }
+
     setCopy(config) {
         if (config.copy) {
             if (config.copy.files.length > 0) {
@@ -61,16 +65,17 @@ class WebpackConfiguration {
                 })
             }
         } else {
-	    return [];
-	}
+            return [];
+        }
     }
+    
     createConfiguration() {
         this.webpackConfig.forEach(function (config) {
             this.entry = this.setEntry(config)
             this.copy = this.setCopy(config)
             this.plugins = this.getPlugins(config)
             this.loaders = this.getLoaders(config)
-			this.productionPlugins = this.getProductionPlugins(config)
+            this.productionPlugins = this.getProductionPlugins(config)
             this.configuration += `{
                 entry: [${this.entry}],
                 devtool: '${config.js.sourceMaps ? "eval": '' }',
