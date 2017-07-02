@@ -40,7 +40,7 @@ class WebpackConfiguration {
         }
         if (config.scss) {
             if (config.scss.entry) {
-                entry.push(`./'${config.scss.entry}'`)
+                entry.push(`'./${config.scss.entry}'`)
             }
         }
         return entry;
