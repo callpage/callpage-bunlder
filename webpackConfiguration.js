@@ -36,11 +36,11 @@ class WebpackConfiguration {
     setEntry(config) {
         let entry = []
         if (config.js.entry) {
-            entry.push(config.js.entry)
+            entry.push(`'./${config.js.entry}'`)
         }
         if (config.scss) {
             if (config.scss.entry) {
-                entry.push(config.scss.entry)
+                entry.push(`./'${config.scss.entry}'`)
             }
         }
         return entry;
