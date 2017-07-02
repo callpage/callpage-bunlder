@@ -17,7 +17,9 @@ class WebpackConfiguration {
             plugins.push(`new PurifyCSSPlugin({paths: glob.sync(path.join(__dirname, '/*.html')), minimize: ENV })`)
         }
         if (config.copy) {
-            plugins.push(`new CopyWebpackPlugin([${this.copy}])`)
+		if(config.copy.files.length > 0) {
+            		plugins.push(`new CopyWebpackPlugin([${this.copy}])`)
+		}
         }
         if (config.js.plugins.ngAnnotate) {
             plugins.push(`new ngAnnotate({add: true})`)
