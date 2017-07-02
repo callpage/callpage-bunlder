@@ -30,7 +30,7 @@ class WebpackConfiguration {
     
     getProductionPlugins(config) {
         return [
-            config.js ? `new webpack.optimize.UglifyJsPlugin())` : undefined,
+            config.js ? `new webpack.optimize.UglifyJsPlugin({mangle: false, warnings: false})` : undefined,
             config.scss ? `new ExtractTextPlugin({filename: 'styles/[name].css', allChunks: true})` : undefined
         ].filter(plugin => plugin).join(',')
     }
