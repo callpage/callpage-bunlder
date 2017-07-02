@@ -11,16 +11,21 @@ class WebpackConfiguration {
         const configs = [`;
 
     }
-    setPlugins(config) {
-        return [
-            `new CleanWebpackPlugin(['${config.buildPath}'], { root: path.join(__dirname), verbose: true, dry: false })`,
-            config.scss ? `new PurifyCSSPlugin({paths: glob.sync(path.join(__dirname, '/*.html')), minimize: ENV })` : undefined,
-            config.copy ? `new CopyWebpackPlugin([${this.copy}])` : undefined,
-            config.js.plugins.ngAnnotate ? `new ngAnnotate({add: true})` : undefined,
-        ].filter(elem => elem).join(',')
+    getPlugins(config) {
+        const plugins = [`new CleanWebpackPlugin(['${config.buildPath}'], { root: path.join(__dirname), verbose: true, dry: false })`]
+        if (config.scss) {
+            plugins.push(`new PurifyCSSPlugin({paths: glob.sync(path.join(__dirname, '/*.html')), minimize: ENV })`)
+        }
+        if (config.copy) {
+            plugins.push(`new CopyWebpackPlugin([${this.copy}])`)
+        }
+        if (config.js.plugins.ngAnnotate) {
+            plugins.push(`new ngAnnotate({add: true})`)
+        }
+        return plugins
     }
 
-    setLoaders(config) {
+    getLoaders(config) {
         return [
             config.js.es6 ? requireLoader("babel", config.vendorPath) : undefined,
             config.scss ? requireLoader("scss") : undefined,
@@ -44,7 +49,7 @@ class WebpackConfiguration {
         if (config.copy) {
             if (config.copy.files.length > 0) {
                 return config.copy.files.map(function (file) {
-                    return `{from: '${file.from}', to: '${file.to}'},`
+                    return `{from: '${file.from}', to: '${file.to}'}`
                 })
             }
         }
@@ -53,8 +58,8 @@ class WebpackConfiguration {
         this.webpackConfig.forEach(function (config) {
             this.entry = this.setEntry(config)
             this.copy = this.setCopy(config)
-            this.plugins = this.setPlugins(config)
-            this.loaders = this.setLoaders(config)
+            this.plugins = this.getPlugins(config)
+            this.loaders = this.getLoaders(config)
             this.configuration += `{
                 entry: [${this.entry}],
                 devtool: '${config.js.sourceMaps ? "eval": '' }',
