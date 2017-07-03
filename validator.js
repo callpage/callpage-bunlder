@@ -31,13 +31,12 @@ class Validator {
     }
     validateVendorPath () {
         this.webpackConfig.forEach(function (config, index) {
-            if(config.vendorPath) {
+            if(config.vendorPath.length > 0) {
                 if(config.vendorPath.startsWith('/') || config.vendorPath.endsWith('/')) {
                     throw new Error(`vendor path in object ${index} shouldn't start or end with' \'/\' `)
                 }
-                if (config.vendorPath.length === 0) {
-                    throw new Error(`vendor path in object ${index} cannot be empty`)
-                }
+            } else {
+                throw new Error(`vendor path in object ${index} cannot be empty`)
             }
         })
     }
