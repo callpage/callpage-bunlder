@@ -104,7 +104,7 @@ class WebpackConfiguration {
             if(ENV) {
                 configs.forEach(config => config.plugins.push(
                     ${this.productionPlugins}
-                    )
+                    ))
             }
 	module.exports = configs`
     }
