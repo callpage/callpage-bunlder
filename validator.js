@@ -34,6 +34,8 @@ class Validator {
             if(config.vendorPath) {
                 if(config.vendorPath.startsWith('/') || config.vendorPath.endsWith('/')) {
                     throw new Error(`vendor path in object ${index} shouldn't start or end with' \'/\' `)
+                } else if (config.vendorPath.length === 0) {
+                    throw new Error(`vendor path in object ${index} cannot be empty`)
                 }
             }
         })
