@@ -42,10 +42,10 @@ class Validator {
         this.webpackConfig.forEach(function (config, index) {    
             if(config.js) {
                 if(config.js.entry.startsWith('./')) {
-                    throw new Error(`\x1b[41m js entry in object ${index} shouldn't contains './' \x1b[0m`)
+                    throw new Error(`\x1b[41m js entry in object ${index} shouldn't contain './' \x1b[0m`)
                 } 
                 if(config.js.entry.startsWith('/')) {
-                     throw new Error(`\x1b[41m js entry in object ${index} shouldn't contains '/' \x1b[0m`)
+                     throw new Error(`\x1b[41m js entry in object ${index} shouldn't contain '/' \x1b[0m`)
                 }
             }
         })
@@ -54,7 +54,7 @@ class Validator {
         this.webpackConfig.forEach(function (config, index) {
             if(config.scss) {
                 if(config.scss.entry.startsWith('./') || config.scss.entry.startsWith('/')) {
-                    throw new Error(`\x1b[41m scss entry in object ${index} shouldn't contains './' or '/' \x1b[0m`)
+                    throw new Error(`\x1b[41m scss entry in object ${index} shouldn't contain './' or '/' \x1b[0m`)
                 }
             } 
         })
