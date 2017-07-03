@@ -8,6 +8,17 @@ class Validator {
         this.validateVendorPath()
         this.validateEntryJs()
         this.validateEntryScss()
+        this.validateFileName()
+    }
+    validateFileName () {
+        this.webpackConfig.forEach(function (config, index) {
+            if(config.js.output.startsWith('/')) {
+                throw new Error(`\x1b[41m build path in object ${index} should start with \'/\' \x1b[0m`)
+            }
+            if(config.js.output.startsWith('./')) {
+                throw new Error(`\x1b[41m build path in object ${index} should start with \'./\' \x1b[0m`)
+            }
+        })
     }
     validateBasePath () {
         this.webpackConfig.forEach(function (config, index) {
