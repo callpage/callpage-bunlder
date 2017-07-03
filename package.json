@@ -9,9 +9,6 @@
     "type": "git",
     "url": "https://github.com/callpage/library-callpage-bundler"
   },
-  "bin": {
-    "cp-bundler": "./bundler.js"
-  },
   "author": "",
   "license": "",
   "dependencies": {
