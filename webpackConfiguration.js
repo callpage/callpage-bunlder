@@ -23,7 +23,7 @@ class WebpackConfiguration {
             }
         }
         if (config.js.plugins.ngAnnotate) {
-            plugins.push(`new ngAnnotate({add: true})`)
+            plugins.push(`new ngAnnotatePlugin({add: true})`)
         }
         return plugins
     }
