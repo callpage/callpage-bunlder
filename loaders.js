@@ -5,7 +5,7 @@ class Loaders {
 	}
 	getLoader() {
 		if (this.loader === "babel") {
-			return `{test: /\\.js$/, exclude: path.resolve('/${this.path}/'),loader: 'babel-loader', options: {	presets: [ ["es2015", {modules: false}]]}}`
+			return `{test: /\\.js$/, exclude: path.resolve(/${this.path}/),loader: 'babel-loader', options: {	presets: [ ["es2015", {modules: false}]]}}`
 		} else if (this.loader === "scss") {
 			return `{test: /\\.s[ac]ss$/, loader: ENV ? ExtractTextPlugin.extract(['css-loader', 'sass-loader']) : [ 'style-loader', 'css-loader?sourceMap', 'sass-loader?sourceMap' ]}`
 		} else if (this.loader === "eslint") {
