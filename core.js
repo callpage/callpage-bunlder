@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 const fs = require('fs');
 const isConfig = fs.existsSync(process.cwd() + '/config.js');
 
