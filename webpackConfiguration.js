@@ -82,12 +82,11 @@ class WebpackConfiguration {
                 output: {
                     path: path.join(__dirname, '${config.buildPath}'),
                     filename: '${this.entry.length === 1 ? config.js.output : '[name].js'}',
-                    publicPath: './'
+                    publicPath: '/'
                 },
             	devServer: {
                     historyApiFallback: true,
-                    publicPath: '/',
-                    contentBase: path.join(__dirname, '/../src/'),
+                    publicPath: '${config.buildPath}',
                     stats: "minimal",
                     open: true 
 	            },
