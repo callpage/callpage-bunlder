@@ -3,12 +3,18 @@ class Validator {
         this.webpackConfig = webpackConfig;
     }
     validate () {
+        this.validateWebpackConfigType()
         this.validateBasePath()
         this.validateBuildPath()
         this.validateVendorPath()
         this.validateEntryJs()
         this.validateEntryScss()
         this.validateOutputFileName()
+    }
+    validateWebpackConfigType() {
+        if(!Array.isArray(this.webpackConfig)) {
+            throw new Error(`\x1b[41m config should be array \x1b[0m`)
+        }
     }
     validateOutputFileName () {
         this.webpackConfig.forEach(function (config, index) {
