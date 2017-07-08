@@ -10,8 +10,7 @@ npm install --save-dev callpage-webpack@latest
 ```
 ### Usage
 
-Add to your package.json scripts command e.g ``` "create" : "path/to/node_modules/callpage-webpack/core.js" ```
-
+Add to your package.json scripts command e.g ``` "create" : "path/to/node_modules/callpage-webpack/core.js" ``` then in your terminal just enter ```npm run create```
 ### Example configration
 
 ```The  exported value must be an array!```
