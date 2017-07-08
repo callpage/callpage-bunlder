@@ -3,6 +3,8 @@ class Validator {
         this.webpackConfig = webpackConfig;
     }
     validate () {
+        this.isBasicsConfigProperties()
+        this.isJsConfigInConfig()
         this.validateWebpackConfigType()
         this.validateBasePath()
         this.validateBuildPath()
@@ -10,6 +12,25 @@ class Validator {
         this.validateEntryJs()
         this.validateEntryScss()
         this.validateOutputFileName()
+    }
+    isJsConfigInConfig() {
+        this.webpackConfig.forEach(function (config, index) {
+            if(!("js" in config)) {
+                throw new Error(`\x1b[41m property "js" in object ${index} is required \x1b[0m`)
+            }  
+            if(config["js"].toString() !== "[object Object]") {
+                throw new Error(`\x1b[41m property "js" in object ${index} must be an object \x1b[0m `)
+            }  
+        })
+    }
+    isBasicsConfigProperties() {
+        this.webpackConfig.forEach(function (config, index) {
+            if(!("vendorPath" in config)) {
+                throw new Error(`\x1b[41m property "vendorPath" in ${index} object is required \x1b[0m`)                
+            } else if (!("buildPath" in config)) {
+                throw new Error(`\x1b[41m property "buildPath" in ${index} object is required \x1b[0m`)
+            }
+        })
     }
     validateWebpackConfigType() {
         if(!Array.isArray(this.webpackConfig)) {
