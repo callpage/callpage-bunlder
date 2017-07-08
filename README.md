@@ -14,7 +14,7 @@ Add to your package.json scripts command e.g ``` "create" : "path/to/node_module
 
 ### Example configration
 
-The exported value must be an array!
+```The  exported value must be an array!```
 
 ```javascript
 
