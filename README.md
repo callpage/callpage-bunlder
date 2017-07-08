@@ -21,7 +21,6 @@ Add to your package.json scripts command e.g ``` "create" : "path/to/node_module
 module.exports = [
   {
       vendorPath: "node_modules",
-      ``` set modules to resolve ```
       buildPath: "/build",
       js: {
             
