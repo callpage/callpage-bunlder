@@ -6,7 +6,7 @@ This is an smart tool that, thanks to simple object configuration, is able to cr
 
 Install the plugin:
 ```
-npm install --save-dev callpage-webpack
+npm install --save-dev callpage-webpack@latest
 ```
 ### Usage
 
