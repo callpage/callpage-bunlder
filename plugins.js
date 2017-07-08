@@ -8,27 +8,27 @@ class Plugins {
             const CleanWebpackPlugin = require('clean-webpack-plugin');`
     }
     getPlugins () {
-        this.getNgAnnotatePlugin()
-        this.getCopyPlugin()
-        this.getScssPlugin()
+        this.addNgAnnotatePlugin()
+        this.addCopyPlugin()
+        this.addScssPlugin()
         return this.template;         
     }
 
-    getNgAnnotatePlugin() {
+    addNgAnnotatePlugin() {
         if(this.configWepback.js.plugins) {
             if(this.configWepback.js.plugins.ngAnnotate) {
                 this.template += `const ngAnnotatePlugin = require('ng-annotate-webpack-plugin');`
             }
         }
     }
-    getCopyPlugin() {
+    addCopyPlugin() {
         if(this.configWepback.copy) {
             if(this.configWepback.copy.files.length > 0) {
                 this.template += `const CopyWebpackPlugin = require('copy-webpack-plugin');`
             }
         }
     }
-    getScssPlugin() {
+    addScssPlugin() {
         if(this.configWepback.scss) {
             this.template += `const PurifyCSSPlugin = require('purifycss-webpack'); const ExtractTextPlugin = require("extract-text-webpack-plugin");`
         }
