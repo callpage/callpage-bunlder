@@ -1,8 +1,8 @@
 {
-  "name": "library-callpage-bundler",
+  "name": "callpage-webpack",
   "version": "1.0.1",
   "description": "",
-  "main": "bundler.js",
+  "main": "core.js",
   "scripts": {},
   "keywords": [],
   "repository": {
